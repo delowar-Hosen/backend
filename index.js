@@ -1,8 +1,8 @@
 require("dotenv").config();
-const exppress = require("express");
+const express = require("express");
 const chalk = require("chalk");
 const routes = require("./routes");
-const app = exppress();
+const app = express();
 
 //middlware
 app.use(express.urlencoded({ extended: true }));
