@@ -5,13 +5,13 @@ _.post("/registration", (req, res) => {
   const { email, password, fullname, isSubscribed } = req.body;
 
   if (!email) {
-    res.json({ error: "You Must Give An Email" });
+    return res.json({ error: "You Must Give An Email" });
   }
   if (!fullname) {
-    res.json({ error: "You Must Give An Fullname" });
+    return res.json({ error: "You Must Give An Fullname" });
   }
   if (!password) {
-    res.json({ error: "You Must Give An Password" });
+    return res.json({ error: "You Must Give An Password" });
   }
 
   res.json({ email, password, fullname, isSubscribed });
