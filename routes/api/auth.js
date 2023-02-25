@@ -13,6 +13,8 @@ _.post("/registration", (req, res) => {
   if (!password) {
     res.json({ error: "You Must Give An Password" });
   }
+
+  res.json({ email, password, fullname, isSubscribed });
 });
 
 module.exports = _;
