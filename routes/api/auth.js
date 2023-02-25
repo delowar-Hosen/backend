@@ -20,12 +20,14 @@ _.post("/registration", (req, res) => {
 
   const user = new User({
     email,
+    phoneNumber,
     firstName,
     lastName,
     password,
   });
 
   user.save();
+
   res.json(user);
 });
 
