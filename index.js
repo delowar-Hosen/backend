@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const chalk = require("chalk");
 const routes = require("./routes");
+var cors = require("cors");
 const app = express();
 
 //middlware
