@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const chalk = require("chalk");
 const routes = require("./routes");
-const setUpDb = require("./config/dbConfig");
+const setUpDb = require("./config/dbConfig.js");
 var cors = require("cors");
 const app = express();
 
