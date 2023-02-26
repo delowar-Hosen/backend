@@ -1,10 +1,10 @@
 const express = require("express");
-const { sendVerificationEmail } = require("../../helpers/emailSender.js");
 const _ = express.Router();
 const User = require("../../models/user.js");
 const jwt = require("jsonwebtoken");
+const { sendVerificationEmail } = require("../../helpers/emailSender.js");
 
-_.post("/registration", (req, res) => {
+_.post("/registration", async (req, res) => {
   try {
     const { email, phoneNumber, firstName, lastName, password } = req.body;
 
@@ -39,7 +39,7 @@ _.post("/registration", (req, res) => {
       { expiresIn: "30m" }
     );
 
-    sendVerificationEmail("gamersbd92020@gmail.com", username, token);
+    sendVerificationEmail(user.email, username, token);
 
     res.json(user);
   } catch (error) {
