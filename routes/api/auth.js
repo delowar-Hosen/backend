@@ -35,7 +35,7 @@ _.post("/registration", async (req, res) => {
 
     let token = jwt.sign(
       { email: user.email },
-      "Z974a^hT)!Z:]f$%vd>l_l`Wy>EN.)",
+      "gfgdgsfdsdfvewafdfghjkmdt156415",
       { expiresIn: "30m" }
     );
 
