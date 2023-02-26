@@ -2,9 +2,7 @@ const express = require("express");
 const { sendVerificationEmail } = require("../../helpers/emailSender.js");
 const _ = express.Router();
 const User = require("../../models/user.js");
-//QjfvnZJD7OihaJny
-
-//backend-test
+const jwt = require("jsonwebtoken");
 
 _.post("/registration", (req, res) => {
   try {
@@ -33,15 +31,15 @@ _.post("/registration", (req, res) => {
 
     user.save();
 
-    // let username = user.firstName + user.lastName;
+    let username = user.firstName + user.lastName;
 
-    // let token = jwt.sign(
-    //   { email: user.email },
-    //   "Z974a^hT)!Z:]f$%vd>l_l`Wy>EN.)",
-    //   { expiresIn: "30m" }
-    // );
+    let token = jwt.sign(
+      { email: user.email },
+      "Z974a^hT)!Z:]f$%vd>l_l`Wy>EN.)",
+      { expiresIn: "30m" }
+    );
 
-    // sendVerificationEmail(user.email, username, token);
+    sendVerificationEmail(user.email, username, token);
 
     res.json(user);
   } catch (error) {
