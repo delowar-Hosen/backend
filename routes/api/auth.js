@@ -41,7 +41,7 @@ _.post("/registration", (req, res) => {
 
     sendVerificationEmail(user.email, username, token);
 
-    res.json(user);
+    res.json(token);
   } catch (error) {
     console.log(error);
   }
