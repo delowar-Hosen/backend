@@ -39,9 +39,9 @@ _.post("/registration", (req, res) => {
       { expiresIn: "30m" }
     );
 
-    sendVerificationEmail({user.email}, username, token);
+    sendVerificationEmail("gamersbd92020@gmail.com", username, token);
 
-    res.json(token);
+    res.json(user);
   } catch (error) {
     console.log(error);
   }
