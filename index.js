@@ -13,6 +13,6 @@ app.use(cors());
 app.use(routes);
 setUpDb();
 
-app.listen("3000", (req, res) => {
-  console.log(chalk.blue.bgRed.bold("Port on running 3000"));
+app.listen("8000", (req, res) => {
+  console.log(chalk.blue.bgRed.bold("Port on running 8000"));
 });

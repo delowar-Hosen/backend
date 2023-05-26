@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-exports.sendVerificationEmail = (email, name, url) => {
+const sendVerificationEmail = async (email, varify, template) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -9,18 +9,13 @@ exports.sendVerificationEmail = (email, name, url) => {
     },
   });
 
-  let info = transporter.sendMail({
+  let info = await transporter.sendMail({
     from: "delowarhosen154@gmail.com", // sender address
     to: email, // list of receivers
     subject: "Oreby Ecomarse Verification Link", // Subject line
     text: "Hello world?", // plain text body
-    html: `<b>${url}</b>`, // html body
+    html: template(varify), // html body
   });
-
-  transporter.sendMail(info, (res, err) => {
-    if (err) return err;
-    return res;
-  });
-
-  console.log("Message sent: %s", info.messageId);
 };
+
+module.exports = sendVerificationEmail;

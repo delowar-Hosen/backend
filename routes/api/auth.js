@@ -1,46 +1,50 @@
 const express = require("express");
+const registrationController = require("../../controllers/registrationController");
+const loginController = require("../../controllers/loginController");
+const otpCodeChecker = require("../../controllers/otpCodeChecker");
 const _ = express.Router();
-const User = require("../../models/user.js");
-const jwt = require("jsonwebtoken");
-const { sendVerificationEmail } = require("../../helpers/emailSender.js");
 
-_.post("/registration", async (req, res) => {
-  const { email, phoneNumber, firstName, lastName, password } = req.body;
+_.post("/registration", registrationController);
+_.post("/login", loginController);
+_.post("/otpcheck", otpCodeChecker);
 
-  if (!email) {
-    return res.json({ error: "You Must Give An Email" });
-  }
-  if (!firstName) {
-    return res.json({ error: "You Must Give A Firstname" });
-  }
-  if (!lastName) {
-    return res.json({ error: "You Must Give A Lastname" });
-  }
-  if (!password) {
-    return res.json({ error: "You Must Give A Password" });
-  }
+// _.post("/registration", async (req, res) => {
+//   const { email, phoneNumber, firstName, lastName, password } = req.body;
 
-  const user = new User({
-    email,
-    phoneNumber,
-    firstName,
-    lastName,
-    password,
-  });
+//   if (!email) {
+//     return res.json({ error: "You Must Give An Email" });
+//   }
+//   if (!firstName) {
+//     return res.json({ error: "You Must Give A Firstname" });
+//   }
+//   if (!lastName) {
+//     return res.json({ error: "You Must Give A Lastname" });
+//   }
+//   if (!password) {
+//     return res.json({ error: "You Must Give A Password" });
+//   }
 
-  user.save();
+//   const user = new User({
+//     email,
+//     phoneNumber,
+//     firstName,
+//     lastName,
+//     password,
+//   });
 
-  let username = user.firstName + user.lastName;
+//   user.save();
 
-  let token = jwt.sign(
-    { email: user.email },
-    "gfgdgsfdsdfvewafdfghjkmdt156415",
-    { expiresIn: "30m" }
-  );
+//   let username = user.firstName + user.lastName;
 
-  sendVerificationEmail(user.email, username, token);
+//   let token = jwt.sign(
+//     { email: user.email },
+//     "gfgdgsfdsdfvewafdfghjkmdt156415",
+//     { expiresIn: "30m" }
+//   );
 
-  res.json(user);
-});
+//   sendVerificationEmail(user.email, username, token);
+
+//   res.json(user);
+// });
 
 module.exports = _;

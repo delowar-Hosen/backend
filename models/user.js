@@ -38,6 +38,9 @@ const userSchema = new Schema({
   avatar: {
     type: String,
   },
+  otpNumber: {
+    type: String,
+  },
   role: {
     type: String,
     default: "member",
