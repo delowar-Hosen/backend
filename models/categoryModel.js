@@ -17,14 +17,12 @@ const categoryModel = new Schema(
     status: {
       type: String,
       default: "waiting",
-      enum: ["waiting,rejected,aproved"],
+      enum: ["waiting", "rejected", "approved"],
     },
-    subCategory: {
-      type: Schema.Types.ObjectId,
-      ref: "subCategory",
-    },
+    subCategory: [{ type: Schema.Types.ObjectId, ref: "subCategory" }],
     updated: {
       type: Date,
+      default: Date.now,
     },
     created: {
       type: Date,

@@ -17,7 +17,7 @@ const subCategoryModel = new Schema(
     status: {
       type: String,
       default: "waiting",
-      enum: ["waiting,rejected,aproved"],
+      enum: ["waiting", "rejected", "approved"],
     },
     category: {
       type: Schema.Types.ObjectId,
