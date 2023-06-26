@@ -7,6 +7,11 @@ const storeModel = new Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      default: "waiting",
+      enum: ["waiting", "rejected", "approved"],
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -19,7 +24,7 @@ const storeModel = new Schema(
       type: String,
       required: true,
     },
-    OfficeAddress: {
+    officeAddress: {
       type: String,
       required: true,
     },
@@ -29,15 +34,6 @@ const storeModel = new Schema(
         ref: "Product",
       },
     ],
-
-    updated: {
-      type: Date,
-      default: Date.now,
-    },
-    created: {
-      type: Date,
-      default: Date.now,
-    },
   },
   { timestamps: true }
 );

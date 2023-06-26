@@ -25,9 +25,8 @@ const userSchema = new Schema({
     default: false,
   },
   merchant: {
-    type: Schema.Types.ObjectId,
-    ref: "Merchant",
-    default: null,
+    type: Boolean,
+    default: false,
   },
   googleId: {
     type: String,
