@@ -1,5 +1,7 @@
 require("dotenv").config();
+const productModels = require("../models/productModels");
 const User = require("../models/user");
+const variantModel = require("../models/variantModel");
 
 exports.secureProduct = async (req, res, next) => {
   //   console.log(req.headers.authorization.split('@')[0]);
@@ -26,5 +28,34 @@ exports.secureProduct = async (req, res, next) => {
 };
 
 exports.createProduct = async (req, res) => {
-  return res.json({ success: "You are illigble" });
+  const { name, description, image, store } = req.body;
+
+  let product = new productModels({
+    name,
+    description,
+    image,
+    store,
+  });
+
+  product.save();
+  res.json(product);
+};
+
+exports.createVariant = async (req, res) => {
+  const { name, image, product } = req.body;
+
+  let variant = new variantModel({
+    name,
+    image,
+    product,
+  });
+
+  variant.save();
+  res.json(variant);
+
+  await productModels.findOneAndUpdate(
+    { _id: variant.product },
+    { $push: { variants: variant._id } },
+    { new: true }
+  );
 };
