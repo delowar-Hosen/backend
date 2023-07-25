@@ -28,12 +28,12 @@ exports.secureProduct = async (req, res, next) => {
 };
 
 exports.createProduct = async (req, res) => {
-  const { name, description, image, store } = req.body;
+  const { name, description, store } = req.body;
 
   let product = new productModels({
     name,
     description,
-    image,
+
     store,
   });
 
@@ -42,12 +42,18 @@ exports.createProduct = async (req, res) => {
 };
 
 exports.createVariant = async (req, res) => {
-  const { name, image, product } = req.body;
+  const { image, product, size, price, color, quantity, ram, storage } =
+    req.body;
 
   let variant = new variantModel({
-    name,
-    image,
+    image:`${process.env.IMAGE_URL}/uploads/${req.file.filename}`,
     product,
+    price,
+    color,
+    quantity,
+    ram,
+    storage,
+    size
   });
 
   variant.save();

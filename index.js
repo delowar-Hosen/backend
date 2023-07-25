@@ -4,12 +4,14 @@ const chalk = require("chalk");
 const routes = require("./routes");
 const setUpDb = require("./config/dbConfig.js");
 var cors = require("cors");
+const path = require('path')
 const app = express();
 
 //middlware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use(routes);
 setUpDb();
 

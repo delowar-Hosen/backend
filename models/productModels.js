@@ -11,10 +11,6 @@ const productModel = new Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: true,
-    },
     variants: [
       {
         type: Schema.Types.ObjectId,
